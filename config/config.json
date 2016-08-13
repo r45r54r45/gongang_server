@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "gongang",
+    "host": "104.199.181.60",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "gongang",
+    "host": "104.199.181.60",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "gongang",
+    "host": "104.199.181.60",
+    "dialect": "mysql"
+  }
+}

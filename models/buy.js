@@ -9,6 +9,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
+    },{
+        classMethods:{
+            associate: function(models){
+                // Buy.belongsTo(models.Course);
+                // Buy.belongsTo(models.User);
+            }
+        }
     });
     return Buy;
 };

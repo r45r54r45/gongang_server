@@ -7,6 +7,13 @@ module.exports = function(sequelize, DataTypes) {
         feedback: DataTypes.INTEGER(1),
         prepare: DataTypes.INTEGER(1),
         body: DataTypes.TEXT
+    },{
+        classMethods:{
+            associate: function(models){
+                Rating.belongsTo(models.Course);
+                Rating.belongsTo(models.User);
+            }
+        }
     });
     return Rating;
 };

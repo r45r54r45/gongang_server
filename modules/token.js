@@ -1,7 +1,6 @@
 var jwt=require('jsonwebtoken');
 var secret="secret-weapon";
 exports.validate=function(req, res, next){
-    console.log(req.headers);
     var accesstoken=req.headers.authorization;
     var token_info;
     try {

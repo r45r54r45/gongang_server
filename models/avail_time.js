@@ -6,7 +6,18 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING(20),
             allowNull:false
         },
-        duration: DataTypes.INTEGER(1)
+        duration: DataTypes.INTEGER(1),
+        occupied: {
+            type:DataTypes.BOOLEAN,
+            defaultValue: false
+        }
     });
     return Avail_time;
 };
+// ,{
+//     classMethods:{
+//         associate: function(models){
+//             Avail_time.hasOne(models.User);
+//         }
+//     }
+// }

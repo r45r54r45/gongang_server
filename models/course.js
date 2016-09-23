@@ -50,7 +50,7 @@ module.exports = function (sequelize, DataTypes) {
                 Course.belongsTo(models.User, {as: 'owner'});
                 Course.belongsToMany(models.User, {as: 'rate', through: models.Rating});
                 Course.belongsToMany(models.User, {
-                    as: 'buyer',
+                    as: 'buyment',
                     through: models.Buy,
                     foreignKey: 'course',
                     otherKey: 'user'

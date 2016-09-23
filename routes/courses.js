@@ -106,7 +106,6 @@ router.get("/category/list", function (req, res, next) {
                     name: {
                         $like: "%" + req.query.category1 + "%"
                     }
-
                 },
                 attributes: ['name'],
                 include: [

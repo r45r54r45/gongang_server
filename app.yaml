@@ -14,4 +14,10 @@
 # [START app_yaml]
 runtime: nodejs
 vm: true
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 3
+  cool_down_period_sec: 120 # default value
+  cpu_utilization:
+    target_utilization: 0.7
 # [END app_yaml]

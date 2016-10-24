@@ -10,8 +10,8 @@ module.exports = function(sequelize, DataTypes) {
     },{
         classMethods:{
             associate: function(models){
-                Rating.belongsTo(models.Course);
-                Rating.belongsTo(models.User);
+                // Rating.belongsTo(models.Course);
+                // Rating.belongsTo(models.User);
             }
         }
     });

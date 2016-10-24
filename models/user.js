@@ -25,7 +25,8 @@ module.exports = function (sequelize, DataTypes) {
                 User.hasMany(models.Rating);
                 User.hasOne(models.Coach_info);
                 User.hasMany(models.Course, {as: 'owner'});
-                User.belongsToMany(models.Course, {as: 'rate', through: models.Rating});
+                User.belongsToMany(models.Course, {as: 'rate', through: models.Rating,foreignKey: 'UserId',
+                    otherKey: 'CourseId'});
                 User.belongsToMany(models.Course, {
                     as: 'buyer',
                     through: models.Buy,

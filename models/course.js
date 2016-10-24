@@ -48,7 +48,8 @@ module.exports = function (sequelize, DataTypes) {
         classMethods: {
             associate: function (models) {
                 Course.belongsTo(models.User, {as: 'owner'});
-                Course.belongsToMany(models.User, {as: 'rate', through: models.Rating});
+                Course.belongsToMany(models.User, {as: 'rate', through: models.Rating,foreignKey: 'courseId',
+                    otherKey: 'userId'});
                 Course.belongsToMany(models.User, {
                     as: 'buyment',
                     through: models.Buy,

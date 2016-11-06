@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 });
 
 
-
+app.set('view engine', 'jade');
 app.use('/',require('./routes/index'));
 app.use('/users', users);
 app.use('/courses', courses);

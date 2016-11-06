@@ -9,6 +9,7 @@ router.get("/list", function (req, res, next) {
     conn.query('SELECT c.id, c.title, c.cover_image, c.price, u.profile, u.name from course c' +
         ' join user u on u.id=c.user_id' +
         ' where u.status=true' +
+        ' and c.cover_image is not null '+
         ' order by c.id desc' +
         ' limit ' + start + ',' + count, function (err, rows, fields) {
         if (err) throw err;
@@ -64,18 +65,15 @@ var searchMatchingCourses = function (user_times, courseIdStart) {
 
                                 //duration 크기의 array 만들어서 forEach로 돌려주고 그 안에서 resolve 시키거나 그 전에 return 시키면 매칭 되는 것만 보는거 가능할듯!
 
-
+                                var count=0;
                                 for (var k = 1; k < duration; k++) {
-                                    if (sortedByDay[i].indexOf(sortedByDay[i][j] + k) == -1) {
-                                        // continue;
-                                        //TODO 이부분 해결 필요
+                                    if (sortedByDay[i].indexOf(sortedByDay[i][j] + k) != -1) {
+                                        count++;
                                     }
                                 }
-                                resolve(course);
-
-
-
-
+                                if(count==duration-1){
+                                    resolve(course);
+                                }
                             }
                         }
                         reject('NOT MATCH');
@@ -105,6 +103,10 @@ var recursivelySearchMatchingCourses = function (user_times, courseIdStart,prior
             }
         }, function (errorCode) {
             if (errorCode == 'NO RESULT') {
+                if(successCidList.length==0){
+                    resolve([]);
+                    return;
+                }
                 conn.query('select c.id, c.title, c.cover_image, c.price, u.profile, u.name from course c' +
                     ' join user u on u.id=c.user_id' +
                     ' where c.id in (?)' +
@@ -277,6 +279,9 @@ router.post("/new", token.validate, function (req, res, next) {
                                 return conn.rollback(function () {
                                     res.json({result: 'fail on selecting coach info id'});
                                 });
+                            }
+                            if(!result4.coach_info_id){
+                                //TODO
                             }
                             var coach_info_id = result4.coach_info_id;
                             conn.query('update' +
